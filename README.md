@@ -1,29 +1,29 @@
 ## DOCKER
 ### 1. What is Docker
 Nền tảng phần mềm cho phép xây dựng, kiểm thử triển khai ứng dụng trong package virtual containerized enviroment. Docker cho phép apps hoạt động bình thường ở mọi nơi, dù trên bất cứ OS nào.
- - **Docker File**: Design cho Docker Image. File không có phần mở rộng (đuôi file).
- - **Docker Image**: chỉ tồn tại ở dạng read-only chứa cách để tạo ra các container. Là snapshot hoặc blueprint của libraries và dependances cần có trong container nhằm phục vụ cho application.
- - **Docker container**:
+ + **Docker File**: Design cho Docker Image. File không có phần mở rộng (đuôi file).
+ + **Docker Image**: chỉ tồn tại ở dạng read-only chứa cách để tạo ra các container. Là snapshot hoặc blueprint của libraries và dependances cần có trong container nhằm phục vụ cho application.
+ + **Docker container**:
   - Môi trường cách li để chạy ứng dụng. Deloy trên bất cứ machine nào mà không gặp compatibility issue. Giúp software bảo toàn tính nguyên vẹn hệ thống, dễ dàng sử dụng, đơn giản hơn khi develop, dễ dàng bảo trì và deploy.
   - Mỗi Container hoạt động như một micro PC, với OS và CPU độc lập, memory, Network resources => add/remove/stop/restart mà không ảnh hưởng các container khác hay host machine.
   - Mỗi Container thường chạy một specific task sau đó được nối vào network
 Khác với Virtual machines, resource được chia sẽ trực tiếp với host => cho phép chạy nhiều Docker Container.
 Docker ít tốn dung lượng ổ cứng do tái sử dụng file bằng layered file system. Nếu có nhiều Docker image cùng sử dụng một base image một lúc, Docker sẽ chỉ giữ lại một bản copy của files cần thiết và chia sẽ chúng với các container.
 ### 2.Why do we need Docker
- - **Compatibility**:
+ + **Compatibility**:
   - **Different programming languages** có thể không cùng có libraries => xung đột chương trình.
   - **Different library versions** => code hoạt động với version này nhưng không hoạt động với version mới hơn.
   - **OS**: Ứng dụng có thể chạy trên OS A nhưng chưa chắc đã có thể chạy trên các OS khác.
  - Triển khai ứng dụng trên **Remote servers**: Container chứa code, libraries, data.
 ### 3. How to use Docker
- - **Docker File**:
+ + **Docker File**:
   - Tạo base image bắt đầu với từ khóa `FROM` (có thể lấy build sẵn từ Dockerhub), lựa chọn phổ biến là Ubuntu và Alpine Linux.
   - `WORKDIR` (optional): làm việc ở folder nào.
   - `COPY`: copy files từ máy vào Docker image.
   - Sau đó có thể `RUN` commands (khởi tạo môi trường, cài đặt các thư viện,...)
   - `EXPOSE` (for web dev và docker compose): mở port. Cho phép truy cập từ máy khi lauch web trong Docker container.
   - `CMD` (only): xác định command muốn chạy khi chạy Docker container.
- - **Docker Image**:
+ + **Docker Image**:
   - Build Docker file: `docker build -t filename .`
   - Run Docker Image: `docker run image_name`
   - Run Docker Image ở dạng interactive: `docker run -it image_name bash`
