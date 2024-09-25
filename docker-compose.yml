@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/src
+    environment:
+      - SDL_VIDEODRIVER=dummy # For pygame run without display
+      - SDL_AUDIODRIVER=dummy # For pygame run without audio
+    tty: true # Keep container running for it sessions
